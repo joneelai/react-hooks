@@ -7,7 +7,13 @@ function Board() {
   // 🐨 squares is the state for this component. Add useState for squares
   // const squares = Array(9).fill(null)
   const defaultSquares = Array(9).fill(null)
-  const [squares, setSquares] = React.useState(defaultSquares)
+  const [squares, setSquares] = React.useState(
+    () => JSON.parse(window.localStorage.getItem('squares')) || defaultSquares,
+  )
+
+  React.useEffect(() => {
+    window.localStorage.setItem('squares', JSON.stringify(squares))
+  }, [squares])
 
   // 🐨 We'll need the following bits of derived state:
   // - nextValue ('X' or 'O')
