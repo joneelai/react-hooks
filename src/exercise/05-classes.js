@@ -9,7 +9,7 @@ import VanillaTilt from 'vanilla-tilt'
 // component with hooks, then go ahead and do this exercise.
 
 function Tilt({children}) {
-  const tiltRef = React.createRef()
+  const tiltRef = React.useRef()
 
   React.useEffect(() => {
     const tiltNode = tiltRef.current
@@ -20,7 +20,7 @@ function Tilt({children}) {
       'max-glare': 0.5,
     })
     return () => tiltNode.vanillaTilt.destroy()
-  }, [tiltRef])
+  }, [])
 
   return (
     <div ref={tiltRef} className="tilt-root">
